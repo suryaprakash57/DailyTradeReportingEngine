@@ -10,13 +10,14 @@ import java.util.TreeSet;
 
 import my.common.TradeMessage;
 import my.common.Utils;
+import my.core.interfaces.IRecordKeeper;
 
 public class ReportManager {
 
 	private final String INDENT_SPACE = "                                       ";
 
-	private IncomingRecordKeeper inRecordKeeper;
-	private OutgoingRecordKeeper outRecordKeeper;
+	private IRecordKeeper inRecordKeeper;
+	private IRecordKeeper outRecordKeeper;
 
 	public ReportManager() {
 		inRecordKeeper = new IncomingRecordKeeper();

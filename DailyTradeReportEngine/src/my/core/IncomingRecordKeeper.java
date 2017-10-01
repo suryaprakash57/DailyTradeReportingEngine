@@ -5,8 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import my.common.TradeMessage;
+import my.core.interfaces.IRecordKeeper;
 
-public class IncomingRecordKeeper {
+public class IncomingRecordKeeper implements IRecordKeeper{
 
 	private static final String AED = "AED";
 	private static final String SAR = "SAR";
@@ -26,7 +27,7 @@ public class IncomingRecordKeeper {
 		updateEntityRank(message, amount);
 	}
 
-	private double calculateAmountinUSD(TradeMessage message) {
+	protected double calculateAmountinUSD(TradeMessage message) {
 		double amount = message.getPrice() * message.getUnits() * message.getAgreedFx();
 		LocalDate settlementDate = message.getSettlementDate();
 		if (capPerDay.containsKey(settlementDate)) {
@@ -39,7 +40,7 @@ public class IncomingRecordKeeper {
 		return amount;
 	}
 
-	private void updateEntityRank(TradeMessage message, double amount) {
+	protected void updateEntityRank(TradeMessage message, double amount) {
 		String entity = message.getEntity().trim();
 		if (entityAmtMap.containsKey(entity)) {
 			double previousAmt = entityAmtMap.get(entity);
@@ -50,7 +51,7 @@ public class IncomingRecordKeeper {
 		}
 	}
 
-	private void correctSettlementDate(TradeMessage message) {
+	protected void correctSettlementDate(TradeMessage message) {
 
 		switch (message.getCurrency()) {
 		case AED:
