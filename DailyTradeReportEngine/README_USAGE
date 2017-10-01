@@ -1,0 +1,2 @@
+1. Run my.generator.MockTradeMessageGenerator first to start the Mock trade generator. This opens a serversocket which waits for the DailyReportingEngine to accept LOGON and TradesInfo.
+2 Execute my.application.ReportEngine after that to generate the Report.
